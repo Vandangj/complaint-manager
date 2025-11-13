@@ -13,7 +13,7 @@ A full-stack complaint management system with role-based access control. The sys
 - Workflows configured and running: backend (console, port 8000) and frontend (webview, port 5000)
 - Additional packages installed: psycopg2-binary (PostgreSQL driver), email-validator (for Pydantic EmailStr)
 
-**Architect Review Recommendations for Future Enhancement**:
+**Architect Review Recommendations fr Future Enhancement**:
 1. Expand CRUD operations: Add UPDATE and DELETE endpoints for users, categories, comments, status history, and attachments
 2. Enhanced frontend features: Add attachment upload/display interface and detailed status history view
 3. Validation improvements: Add foreign key validation in comment/status/attachment creation to prevent invalid references
