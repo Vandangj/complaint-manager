@@ -1,0 +1,28 @@
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+sqlalchemy==2.0.36
+python-dotenv==1.0.1
+pydantic==2.10.3
+python-multipart==0.0.20
+```
+
+### Step 2: Update Your Repository Structure
+
+Your repo should look like this:
+```
+complaint-manager/  (root)
+├── requirements.txt          ← Add this file here
+├── backend/
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── main.py
+│   │   ├── database.py
+│   │   ├── models.py
+│   │   ├── crud.py
+│   │   ├── schemas.py
+│   │   └── routers/
+│   ├── .env
+│   └── db.sqlite3
+└── frontend/
+    ├── streamlit_app.py
+    └── requirements.txt
