@@ -1,12 +1,23 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.app.database import engine, Base
-from backend.app.routers import users, categories, complaints
-from backend.app import models, crud, schemas
-from backend.app.database import SessionLocal
+from app.database import engine, Base
+from app.routers import users, categories, complaints
+from app import models, crud, schemas
+from app.database import SessionLocal
 import sys
 
-app = FastAPI(title="Complaint Management System", version="1.0.0")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: create tables and seed data
+    Base.metadata.create_all(bind=engine)
+    seed_initial_data()
+    yield
+    # Shutdown: cleanup if needed
+
+
+app = FastAPI(title="Complaint Management System", version="1.0.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -19,11 +30,6 @@ app.add_middleware(
 app.include_router(users.router)
 app.include_router(categories.router)
 app.include_router(complaints.router)
-
-@app.on_event("startup")
-def startup_event():
-    Base.metadata.create_all(bind=engine)
-    seed_initial_data()
 
 @app.get("/")
 def read_root():

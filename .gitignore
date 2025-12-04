@@ -49,3 +49,14 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Replit
+.replit
+replit.md
+.local/
+
+# README
+README.md
+
+# Attached assets
+attached_assets/
